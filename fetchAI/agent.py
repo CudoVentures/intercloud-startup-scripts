@@ -10,7 +10,7 @@ helloWorld = Agent(
         port=1234,
         # seed is secret phrase you should change
         seed="an example recovery phrase",
-        endpoint=["http://" + ipAddress + "/:8001/submit"],
+        endpoint=["http://" + ipAddress + "/:1234/hello"],
         )
 
 # sends a confirmation message once it starts running
