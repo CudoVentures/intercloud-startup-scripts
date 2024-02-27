@@ -4,7 +4,7 @@ set -e -u -o pipefail
 curl -sSL https://install.python-poetry.org | python3 -
 echo 'export PATH="/root/.local/bin:$PATH"' >> ~/.bashrc
 # create a folder for our example Fetch.AI agent
-cd
+cd ~
 mkdir hello-world-fetch
 cd hello-world-fetch
 # get the example agent script, and run it
