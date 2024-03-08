@@ -8,7 +8,7 @@
 # the local development server.
 # ******************************************************************************
 
-# Function to create a new Archway account and capture the address
+# Create a new Archway account and capture the address
 create_archway_account() {
     echo "Creating new Archway account..."
     output=$(archway accounts new)
@@ -17,14 +17,14 @@ create_archway_account() {
     echo $address > account_address.txt
 }
 
-# Function to configure the multisig_params.json file
+# Configure the multisig_params.json file
 configure_multisig_script() {
     echo "Configuring MultiSig script..."
     account_address=$(<account_address.txt)
     jq --arg address "$account_address" '.sender_account = $address | .members = [{addr: $address, weight: 1}]' scripts/instantiate/multisig_params.json > tmp.$$.json && mv tmp.$$.json scripts/instantiate/multisig_params.json
 }
 
-# Function to update the .env file
+# Update the .env file
 setup_env_file() {
     echo "Setting up .env file..."
     cp .env.example .env
