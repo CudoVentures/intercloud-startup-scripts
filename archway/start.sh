@@ -37,9 +37,9 @@ setup_env_file() {
 sudo apt update
 
 echo "Installing jq, nodejs and npm..."
-sudo apt install jq
+sudo apt install -y jq
 sudo apt-get install -y nodejs
-sudo apt install npm
+sudo apt install -y npm
 
 echo "Installing Archway Developer CLI..."
 npm install -g @archwayhq/cli
