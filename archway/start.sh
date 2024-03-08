@@ -33,9 +33,13 @@ setup_env_file() {
     echo "DAODAO_CONTRACTS=$contracts" >> .env
 }
 
+# Update os
+sudo apt update
+
 echo "Installing jq, nodejs and npm..."
 sudo apt install jq
 sudo apt-get install -y nodejs
+sudo apt install npm
 
 echo "Installing Archway Developer CLI..."
 npm install -g @archwayhq/cli
