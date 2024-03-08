@@ -11,7 +11,7 @@
 # Create a new Archway account and capture the address
 create_archway_account() {
     echo "Creating new Archway account..."
-    output=$(archway accounts new)
+    output=$(archway accounts new mywallet)
     address=$(echo "$output" | grep 'Address:' | awk '{print $2}')
     echo "$output"
     echo $address > account_address.txt
@@ -64,7 +64,8 @@ npm install -g @archwayhq/cli
 
 # Configure Archway CLI
 echo "Configuring Archway Developer CLI to use the Constantine network..."
-archway config chain-id constantine-3 --global
+#archway config chain-id constantine-3 --global
+archway config set -g chain-id constantine-3
 # archway config chain-id archway-1 --global  # For Mainnet
 
 echo "Current Archway CLI configuration:"
