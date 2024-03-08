@@ -36,6 +36,10 @@ setup_env_file() {
 # Update os
 sudo apt update
 
+# Install go
+echo "Installing go..."
+sudo apt install golang-go
+
 echo "Installing jq, nodejs and npm..."
 sudo apt install -y jq
 sudo apt-get install -y nodejs
