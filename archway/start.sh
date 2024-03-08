@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# ******************************************************************************
+# This script deploys the Archway MultiSig to the Constantine testnet and 
+# starts a local frontend to interact with the MultiSig. It automates the 
+# process of setting up the environment, creating an Archway account, 
+# configuring the MultiSig parameters, deploying the contracts, and setting up 
+# the local development server.
+# ******************************************************************************
+
 # Function to create a new Archway account and capture the address
 create_archway_account() {
     echo "Creating new Archway account..."
