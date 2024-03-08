@@ -38,11 +38,22 @@ sudo apt update
 
 # Install go
 echo "Installing go..."
-sudo apt install golang-go
+sudo apt install -y golang-go
 
-echo "Installing jq, nodejs and npm..."
+# Install curl to install node v18
+sudo apt install -y curl
+
+# Install jq
+echo "Installing jq..."
 sudo apt install -y jq
-sudo apt-get install -y nodejs
+
+# Install nodejs 18
+echo "Installing nodejs..."
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Install npm
+echo "Installing npm..."
 sudo apt install -y npm
 
 echo "Installing Archway Developer CLI..."
