@@ -95,6 +95,9 @@ echo "Configuring Archway Developer CLI to use the Constantine network..."
 archway config set -g chain-id constantine-3
 # archway config chain-id archway-1 --global  # For Mainnet
 
+# Set keyring backend to test
+archway config set -g keyring-backend test
+
 echo "Current Archway CLI configuration:"
 archway config show
 
