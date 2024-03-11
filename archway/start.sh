@@ -11,7 +11,7 @@
 # Create a new Archway account and capture the address
 create_archway_account() {
     echo "Creating new Archway account..."
-    output=$(archway accounts new mywallet --keyring-backend test)
+    output=$(archway accounts new mywallet4 --keyring-backend test)
     address=$(echo "$output" | grep 'Address:' | awk '{print $2}')
     echo "$output"
     echo $address > account_address.txt
@@ -20,15 +20,13 @@ create_archway_account() {
 # Configure the multisig_params.json file
 configure_multisig_script() {
     echo "Configuring MultiSig script..."
-    account_address=$(<account_address.txt)
+    account_address=$(<../account_address.txt)
+    echo "Account address: $account_address"
     jq --arg address "$account_address" '.sender_account = $address | .members = [{addr: $address, weight: 1}]' scripts/instantiate/multisig_params.json > tmp.$$.json && mv tmp.$$.json scripts/instantiate/multisig_params.json
 }
 
 # Update the .env file
 setup_env_file() {
-    echo "Setting up .env file..."
-    cp .env.example .env
-    sed -i 's/RUNTIME_ENVIRONMENT=mainnet|testnet|titus/RUNTIME_ENVIRONMENT=testnet/' .env
     contracts=$(cat scripts/instantiate/multisig_contracts_result.json)
     echo "DAODAO_CONTRACTS=$contracts" >> .env
 }
@@ -110,15 +108,25 @@ echo "Listing all accounts..."
 archway accounts list --keyring-backend test
 
 # Clone MultiSig repository
-echo "Change to user's home directory..."
-cd ~
+#echo "Change to user's home directory..."
+#cd ~
 echo "Cloning MultiSig repository..."
 git clone https://github.com/archway-network/archway-msig.git
+echo "Change into the archway-msig directory..."
 cd archway-msig
+echo "Install packages with npm..."
 npm install
 
 # Configuring MultiSig script
 configure_multisig_script
+
+# Set up .env file
+echo "Setting up .env file..."
+cp .env.example .env
+#sed -i 's/RUNTIME_ENVIRONMENT=\(mainnet\|testnet\|titus\)/RUNTIME_ENVIRONMENT=testnet/' .env
+sed -i 's/RUNTIME_ENVIRONMENT=mainnet|testnet|devnet/RUNTIME_ENVIRONMENT=testnet/' .env
+
+sed -i 's/DEFAULT_TRANSPORT=rpc|rest/DEFAULT_TRANSPORT=rpc/' .env
 
 # Deploy the MultiSig contracts
 echo "Deploying MultiSig contracts..."
