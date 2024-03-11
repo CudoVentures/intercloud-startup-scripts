@@ -11,7 +11,7 @@
 # Create a new Archway account and capture the address
 create_archway_account() {
     echo "Creating new Archway account..."
-    output=$(archway accounts new mywallet)
+    output=$(archway accounts new mywallet --keyring-backend test)
     address=$(echo "$output" | grep 'Address:' | awk '{print $2}')
     echo "$output"
     echo $address > account_address.txt
@@ -107,13 +107,13 @@ archway config show
 create_archway_account
 
 echo "Listing all accounts..."
-archway accounts list
+archway accounts list --keyring-backend test
 
 # Clone MultiSig repository
 echo "Change to user's home directory..."
 cd ~
 echo "Cloning MultiSig repository..."
-git clone git@github.com:archway-network/archway-msig.git
+git clone https://github.com/archway-network/archway-msig.git
 cd archway-msig
 npm install
 
