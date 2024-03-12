@@ -64,8 +64,8 @@ echo "Installing nodejs..."
 #curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 #sudo apt install -y nodejs
-nvm install 18
-nvm use 18
+nvm install --lts
+nvm use --lts
 
 # Install npm
 echo "Installing npm..."
