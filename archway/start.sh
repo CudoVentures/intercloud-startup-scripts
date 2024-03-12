@@ -40,8 +40,8 @@ yes | cargo install cargo-generate
 
 # Install docker
 # Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install ca-certificates curl
+sudo apt-get -y update
+sudo apt-get -y install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -53,15 +53,23 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Install nodejs 18
 echo "Installing nodejs..."
 #curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 #sudo apt install -y nodejs
-nvm install --lts
-nvm use --lts
+nvm install 20
+nvm use 20
+
+echo "Node.js version:"
+node -v
+echo "NPM version:"
+npm -v
 
 # Install npm
 echo "Installing npm..."
@@ -98,4 +106,4 @@ git clone https://github.com/archway-network/archway-msig.git
 echo "Change into the archway-msig directory..."
 cd archway-msig
 echo "Install packages with npm..."
-npm install
+npm install -y
