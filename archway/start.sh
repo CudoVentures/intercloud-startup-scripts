@@ -55,10 +55,6 @@ sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# Install gnome keyring
-sudo apt-get install -y gnome-keyring
-echo 'somecredstorepass' | gnome-keyring-daemon --unlock # unlock the system's keyring
-
 # Install nodejs 18
 echo "Installing nodejs..."
 #curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
